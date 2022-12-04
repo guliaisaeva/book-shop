@@ -1,0 +1,156 @@
+/*------------ Variables Css---------- */
+ /* typography */
+ :root {
+    --body-font: 'Roboto','Verdana',sans-serif;
+    --accent-font: 'Montez',cursive;
+  }
+  /* colors */
+  :root {
+    --dark-color: #000000;
+    --light-color: #fff;
+    --dark-blue-color:#32485C;
+    --accent-color:#EE788E;
+    --hero-bg-color:#439AA5;
+    --catalog-bg-color:#F5EDDF;
+    --catalog-card-color:#97CEDB;
+    --socials-bg-color:rgba(196, 196, 196, 0.5);
+    --testimonial-cards-bg-color:#F1F3F2;
+    --btn-hover-color: #21842B;
+    --btn--active-color:#C48F71;
+    --btn--disabled-color: #767474;
+  }
+/*----------- Base styles------------ */
+*,::before,
+::after {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+  }
+body{
+    background: var(--hero-bg-color);
+    font-family: var(--body-font);
+    font-size:1rem;
+    width: 100%;
+    min-height: 100vh;
+    color: var(--dark-blue-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    width: 60%;
+    margin: 2rem 0;
+}
+
+h2{
+    text-align: center;
+    margin: 0 0 20px;
+    color: var(--dark-blue-color);
+    font-family: var(--accent-font);
+    font-size: 2.5rem;
+}
+
+.form{
+    width: 100%;
+    padding: 30px 40px;
+}
+
+.form-control{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* margin-bottom: 10px;
+    padding-bottom: 20px; */
+    position: relative;
+    gap: 1rem;
+}
+
+.form-control label{
+    color: var(--dark-blue-color);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-control input
+{
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+}
+.gift input[type="checkbox"]{
+    width:20px;
+    padding-left: 10px;
+}
+
+.form-control input:focus{
+    outline: 0;
+    border-color: #777;
+}
+.form-control input[placeholder]{
+    text-align: center;
+}
+.form-control.success input {
+    border-color: var(--succes-color);
+}
+
+.form-control.error input {
+    border-color: var(--error-color);
+}
+
+.form-control small{
+    color: var(--error-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.form-control.error small{
+    visibility: visible;
+}
+.form button {
+    cursor: pointer;
+    background-color: #3498db;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    margin-top:20px;
+    width:100%;
+}
+.payment{
+    display: flex;
+}
+.gift{
+    display: flex;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+fieldset{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+legend{
+    text-align: center;
+    color: var(--accent-color);
+    font-weight: 700;
+}

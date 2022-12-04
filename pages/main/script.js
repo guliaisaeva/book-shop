@@ -43,6 +43,12 @@ const basketEl=document.createElement("div");
 basketEl.setAttribute("class", "basket-shopping");
 basketEl.innerHTML=`<a href="#form"><i class="fa-solid fa-cart-shopping nav__link"></i></a>`
 navEl.appendChild(basketEl);
+//create shopping counter
+const shoppingCounter=document.createElement("span");
+shoppingCounter.innerText="0";
+shoppingCounter.setAttribute("id","shopping-count");
+basketEl.appendChild(shoppingCounter);
+
 
 // ---------------- Main Block--------------------------
 // create main block
@@ -61,6 +67,10 @@ heroContentEl.setAttribute("class","hero__content");
 heroContainerEl.appendChild(heroContentEl);
 const heroImgEl=document.createElement("div");
 heroImgEl.setAttribute("class","hero__img");
+const heroImg=document.createElement("img");
+heroImg.setAttribute("alt","hero Img");
+heroImg.src="../../assets/images/hero-footer/heroImg.svg";
+heroImgEl.appendChild(heroImg);
 heroContentEl.appendChild(heroImgEl);
 
 //right side of Hero
@@ -134,10 +144,6 @@ quoutBtn.addEventListener("click", function () {
     quoutAuthor.innerText = quotes[random].person;
   });
 
-
-
-
-
 // -------------Catalog Section------------------
  const catalogEl=document.createElement("section");
  catalogEl.setAttribute("class","catalog");
@@ -151,6 +157,46 @@ const catalogTitle=document.createElement("h2");
 catalogTitle.setAttribute('class',"catalog__title");
 catalogTitle.innerText="Book Catalog";
 catalogContainer.appendChild(catalogTitle);
+const boxEl=document.createElement("div");
+boxEl.classList.add("catalog__content");
+catalogContainer.appendChild(boxEl);
+// shopping Cart elements
+ //create shopping cart section
+ const shoppingCartSection=document.createElement("section");
+ shoppingCartSection.classList.add("shopping-cart");
+ mainEl.appendChild(shoppingCartSection);
+ //create shopping cart title
+ const shoppingCartTitle=document.createElement("p");
+ shoppingCartTitle.classList.add("shopping-cart__title");
+ shoppingCartTitle.innerText="Your Book Order Cart";
+ shoppingCartSection.appendChild(shoppingCartTitle);
+ // //create shopping cart content
+ const shoppingCartContent=document.createElement("div");
+ shoppingCartContent.classList.add("shopping-cart__content");
+ shoppingCartSection.appendChild(shoppingCartContent);
+ // //create shopping cart container
+ const shoppingCartContainer=document.createElement("div");
+ shoppingCartContainer.classList.add("cards-container");
+ shoppingCartContent.appendChild(shoppingCartContainer);
+
+//-----------create Total--------------------
+const shoppingTotal=document.createElement("div");
+shoppingTotal.classList.add("total-div");
+shoppingTotal.innerText="Total: $"
+const totalSpan=document.createElement("span");
+totalSpan.setAttribute("id","total");
+totalSpan.innerText="0"
+shoppingTotal.appendChild(totalSpan)
+shoppingCartContent.appendChild(shoppingTotal);
+//create Total confirm button
+const confirmBtn=document.createElement("a");
+confirmBtn.setAttribute("id","confirmBtn")
+confirmBtn.innerText="Confirm Order";
+shoppingCartContent.appendChild(confirmBtn);
+
+
+
+//function to render carts taking book infos from json file
 
  async function renderCatalogCarts(){
     let url = '../main/catalogBooks.json';
@@ -158,24 +204,356 @@ catalogContainer.appendChild(catalogTitle);
     let dataFrom= await data.json();
     console.log(dataFrom)
 
-    for(cards of dataFrom.results){
-        boxGenerator(charachters);
+    for(cards of dataFrom){
+        catalogGenerator(cards)
     }
     }
     renderCatalogCarts();
-    function boxGenerator(dataFrom){
-        const boxEl=document.createElement("div");
-        boxEl.classList.add("container__items");
-        container.appendChild(boxEl);
-        const imgEl=document.createElement("img");
-        imgEl.src=`${dataFrom.image}`;
-        boxEl.appendChild(imgEl);
-        const linkEl=document.createElement("a");
-        linkEl.href="charackter.html";
-        linkEl.innerHTML=`${dataFrom.name}`
-        boxEl.appendChild(linkEl);
+    //function to create catalog cards taking book infos from json file
+    function catalogGenerator(dataFrom){
+      const cardEl=document.createElement("div");
+      cardEl.classList.add("card");
+      boxEl.appendChild(cardEl);
+      //create img-box and img
+      const cardImgEl=document.createElement("div");
+      cardImgEl.classList.add("card__img-box");
+      cardEl.appendChild(cardImgEl);
+      const imgEl=document.createElement("img");
+      imgEl.setAttribute("alt","book");
+      imgEl.src=`${dataFrom.imageLink}`;
+      cardImgEl.appendChild(imgEl);
+     //create card info part
+     const cardInfoEl=document.createElement("div");
+     cardInfoEl.classList.add("card__info");
+     cardEl.appendChild(cardInfoEl);
+        //create card info title
+        const bookTitleEl=document.createElement("h3");
+        bookTitleEl.classList.add("title");
+         bookTitleEl.innerText=`${dataFrom.title}`;
+         cardInfoEl.appendChild(bookTitleEl)
+           //create card info  author
+           const bookAuthorEl=document.createElement("h4");
+           bookAuthorEl.classList.add("author");
+           bookAuthorEl.innerText=`${dataFrom.author}`;
+            cardInfoEl.appendChild(bookAuthorEl)
+            //create card info  show more link
+            const bookDetailEl=document.createElement("span");
+            bookDetailEl.classList.add("show-more");
+            bookDetailEl.setAttribute("id","show-more")
+            bookDetailEl.innerText="Show more";
+             cardInfoEl.appendChild(bookDetailEl);
+            //create card info  price
+            const priceBox=document.createElement("div")
+             priceBox.innerText="$"
+             priceBox.classList.add("priceDiv")
+            const bookPrice=document.createElement("span");
+            bookPrice.classList.add("price");
+            bookPrice.innerText=`${dataFrom.price}`;
+             priceBox.appendChild(bookPrice)
+             cardInfoEl.appendChild(priceBox)
+            //create card info button
+            const bookBtnEl=document.createElement("button");
+            bookBtnEl.setAttribute("id","bookBtn")
+            bookBtnEl.innerText="Add To Bag";
+             cardInfoEl.appendChild(bookBtnEl);
+
+
+
+        // Popup Block
+        //create popup container
+        const popupContainerEl=document.createElement("div");
+        popupContainerEl.classList.add("popup-container","active");
+        //create popup title
+        const popupTitleEl=document.createElement("h3");
+        popupTitleEl.classList.add("title");
+        popupTitleEl.innerText=`${dataFrom.title}`;
+        popupContainerEl.appendChild(popupTitleEl);
+        //create popup author
+        const popupAuthorEl=document.createElement("h4");
+        popupAuthorEl.classList.add("author");
+        popupAuthorEl.innerText=`${dataFrom.author}`;
+        popupContainerEl.appendChild(popupAuthorEl);
+        //create popup  info about book
+        const aboutBookEl=document.createElement("p");
+        aboutBookEl.classList.add("about-book");
+        aboutBookEl.setAttribute("id","about-book");
+        aboutBookEl.innerText=`${dataFrom.description}`
+        popupContainerEl.appendChild(aboutBookEl);
+        cardInfoEl.appendChild(popupContainerEl);
+        //create popup close btn
+        const popupcloseEl=document.createElement("div");
+        popupcloseEl.classList.add("close-icon");
+        popupContainerEl.appendChild( popupcloseEl);
+        //create popup close icon
+        const closeIcon=document.createElement("i")
+        closeIcon.classList.add("fa-solid","fa-xmark","fa-2x");
+        popupcloseEl.appendChild(closeIcon);
+
+        // POPUP FUNCTIONLAITY
+
+        bookDetailEl.addEventListener("click",()=>{
+          cardImgEl.classList.add("active");
+          popupContainerEl.classList.remove("active");
+        });
+
+        popupcloseEl.addEventListener("click",()=>{
+          cardImgEl.classList.remove("active");
+          popupContainerEl.classList.add("active");
+        })
+
+        // Shoppin Cart section
+         bookBtnEl.addEventListener('click',function(event){
+          alert("Thank you!Your book is added to cart")
+          let shoppinCartImgFullPAth=event.target.parentElement.previousElementSibling.children[0].src;
+          let pos=shoppinCartImgFullPAth.indexOf("img")+22;
+          let partPath=shoppinCartImgFullPAth.slice(pos);
+          console.log(partPath)
+          let bookName=event.target.parentElement.parentElement.children[1].children[0].textContent;
+          let bookAuthor=event.target.parentElement.parentElement.children[1].children[1].textContent;
+          let bookPriceinCart=event.target.parentElement.parentElement.children[1].children[3].textContent;
+          let finalPrice=bookPriceinCart.slice(1).trim();
+          console.log(finalPrice)
+          const items={}
+          items.image=`${partPath}`;
+          items.name=bookName;
+          items.author=bookAuthor;
+          items.price=bookPriceinCart;
+          items.price=finalPrice;
+          const shoppingCart=document.createElement("div");
+          shoppingCart.classList.add("sh-card");
+               shoppingCart.innerHTML=`
+               <div class="card__img-box">
+                   <img src=${items.image} alt="book">
+               </div>
+               <div class="card__info shoppingcartinfo">
+                   <h3 class="title">${items.name}</h3>
+                   <h4 class="author">${items.author}</h4>
+                   <span class="card-price">${items.price}</span>
+               </div> <i class="fa-solid fa-xmark fa-2x cart-icon"></i>`
+               shoppingCartContainer.appendChild(shoppingCart);
+            //remove selected book function
+            function deleteCart(){
+              const deleteBtns=document.querySelectorAll(".fa-xmark");
+              deleteBtns.forEach(function(btn){
+               btn.addEventListener("click",(e)=>{
+                 let selectedItem = e.target.parentElement;
+                selectedItem.remove();
+
+               })
+             })
+
+            }
+                showTotals()
+                deleteCart()
+            });
+
+  }
+  //Shopping Card Show Functionality
+  basketEl.addEventListener("click",()=>{
+    console.log("works")
+    shoppingCartSection.classList.toggle("active");
+   })
+  //show Total function
+
+  function showTotals(){
+    const total=[];
+    const items=document.querySelectorAll(".card-price");
+    items.forEach(function(item){
+      total.push(parseFloat(item.textContent));
+    })
+      const totalMoney=total.reduce(function(total,item){
+        total += item;
+        return total;
+      },0);
+      const finalMoney=totalMoney.toFixed(2);
+     totalSpan.textContent=finalMoney;
+     shoppingCounter.textContent=total.length
     }
 
+// Confirm Order Functionality
+confirmBtn.addEventListener("click",()=>{
+ location.href=("/book-shop/pages/form/index.html");
+})
+
+
+
+
+
+//   const shoppingCart=document.createElement("div");
+//   shoppingCart.classList.add("sh-card");
+//        shoppingCart.innerHTML=`
+//        <i class="fa-solid fa-xmark fa-2x cart-icon"></i>
+//        <div class="card__img-box">
+//            <img src=${dataFrom.imageLink} alt="book">
+//        </div>
+//        <div class="card__info">
+//            <h3 class="title">${dataFrom.title}</h3>
+//            <h4 class="author">${dataFrom.author}</h4>
+//            <span class="price">&dollar;${dataFrom.price}</span>
+//        </div>`
+//        shoppingCartContainer.appendChild(shoppingCart);
+
+//   }
+
+// const bookBtn=document.querySelector(".")
+// bookBtnEl.addEventListener("click",function(e){
+//   if(e.target){
+//     //function to create catalog cards taking book infos from json file
+
+
+
+
+
+//        //create shopping cart Image
+
+
+
+// // shoppingCartContainer.innerHTML=` <div class="card">
+// // <i class="fa-solid fa-xmark fa-2x cart-icon"></i>
+// // <div class="card__img-box">
+// //     <img src="../../assets/images/catalog/effectiveJs.png" alt="book">
+// // </div>
+// // <div class="card__info">
+// //     <h3 class="title">Javascript Guids from Scratch</h3>
+// //     <h4 class="author">John, Ursula Cannedy</h4>
+// //     <span class="price">&dollar;30</span>
+// // </div>`
+
+  // }
+
+// })
+
+
+
+  //Popup Section Functionlaity
+    // const container = document.querySelector(".container");
+    // const btn = document.querySelector(".btn");
+    // const popupContainer = document.querySelector(".popup-container");
+    // const closedIcon = document.querySelector(".close-icon");
+
+    // btn.addEventListener("click", () => {
+    //   container.classList.add("active");
+    //   popupContainer.classList.remove("active");
+    // });
+    // closedIcon.addEventListener("click", () => {
+    //   container.classList.remove("active");
+    //   popupContainer.classList.add("active");
+    // });
+      // cardEl.innerHTML=`
+
+      // <div class="card__img-box">
+      //     <img src=${dataFrom.imageLink} alt="book">
+      // </div>
+      // <div class="card__info">
+      //     <h3 class="title">${dataFrom.title}</h3>
+      //     <h4 class="author">${dataFrom.author}</h4>
+      //     <span class="show-more" id="show-more"> Show more</span>
+      //     <span class="price">&dollar;${dataFrom.price}</span>
+      //     <button>Add To Bag</button>
+      //     <!-- Popup -->
+      //     <div class="popup-container active">
+      //         <h3 class="title">JavaScript:The Good Parts avaScript</h3>
+      //         <h4 class="author">Douglas Crockford</h4>
+      //         <p class="about-book" id="about-book">With JavaScript: The Good Parts, you'll discover a
+      //             beautiful, elegant, lightweight and highly expressive language that lets you create
+      //             effective code, whether you're managing object libraries or just trying to get Ajax
+      //             to run fast. If you develop sites or applications for the Web, this book is an
+      //             absolute must If you develop sites or applications for the Web, this book is an
+      //             absolute must</p>
+      //         <div class="close-icon">
+      //             <i class="fa-solid fa-xmark fa-2x"></i>
+      //         </div>
+      // </div>`
+
+
+
+// -----------------SHOPPING CART SECTION-------------------------
+
+
+
+
+
+
+// bookBtnEl.addEventListener('click',function(event){
+// let shoppinCartImgFullPAth=event.target.parentElement.previousElementSibling.children[0].src;
+// let pos=shoppinCartImgFullPAth.indexOf("img")+22;
+// let partPath=shoppinCartImgFullPAth.slice(pos);
+// console.log(partPath)
+// let bookName=event.target.parentElement.parentElement.children[1].children[0].textContent;
+// let bookAuthor=event.target.parentElement.parentElement.children[1].children[1].textContent;
+// let bookPriceinCart=event.target.parentElement.parentElement.children[1].children[3].textContent;
+// let finalPrice=bookPriceinCart.slice(1).trim();
+// console.log(finalPrice)
+// const items={}
+// items.image=`${partPath}`;
+// items.name=bookName;
+// items.author=bookAuthor;
+// items.price=bookPriceinCart;
+// items.price=finalPrice;
+//   });
+
+//   const shoppingCart=document.createElement("div");
+//   shoppingCart.classList.add("sh-card");
+//        shoppingCart.innerHTML=`
+//        <i class="fa-solid fa-xmark fa-2x cart-icon"></i>
+//        <div class="card__img-box">
+//            <img src=${dataFrom.imageLink} alt="book">
+//        </div>
+//        <div class="card__info">
+//            <h3 class="title">${dataFrom.title}</h3>
+//            <h4 class="author">${dataFrom.author}</h4>
+//            <span class="price">&dollar;${dataFrom.price}</span>
+//        </div>`
+//        shoppingCartContainer.appendChild(shoppingCart);
+
+//   }
+
+
+// // create shopping cart
+
+//
+
+// // Add items to the cart
+// function addBook(){
+// bookBtnEl.addEventListener('click',function(event){
+// let shoppinCartImgFullPAth=event.target.parentElement.previousElementSibling.children[0].src;
+// let pos=shoppinCartImgFullPAth.indexOf("img")+22;
+// let partPath=shoppinCartImgFullPAth.slice(pos);
+// console.log(partPath)
+// let bookName=event.target.parentElement.parentElement.children[1].children[0].textContent;
+// let bookAuthor=event.target.parentElement.parentElement.children[1].children[1].textContent;
+// let bookPriceinCart=event.target.parentElement.parentElement.children[1].children[3].textContent;
+// let finalPrice=bookPriceinCart.slice(1).trim();
+// console.log(finalPrice)
+// const items={}
+// items.image=`${partPath}`;
+// items.name=bookName;
+// items.author=bookAuthor;
+// items.price=bookPriceinCart;
+// items.price=finalPrice;
+
+// //create book cart item
+// // const cartItem=document.createElement("div");
+// // cartItem.classList("card")
+
+
+//confirmation block
+//create confirmation box
+// const shoppingCartConfirmation=document.createElement("div");
+// shoppingCartConfirmation.classList.add("confirmation");
+// shoppingCartContent.appendChild(shoppingCartConfirmation);
+// //create confirmation total
+// const confirmationTotal=document.createElement("p");
+// confirmationTotal.innerText="Total:"
+// shoppingCartConfirmation.appendChild(confirmationTotal);
+// //create confirmation total Value
+// const confirmationTotalValue=document.createElement("span");
+//  confirmationTotalValue.setAttribute("id","total");
+//  confirmationTotalValue.innerText="$0";
+//  confirmationTotal.appendChild(confirmationTotalValue);
+// })
+// }
+// addBook()
 
  //add to body
 dFrag.appendChild(mainEl);
