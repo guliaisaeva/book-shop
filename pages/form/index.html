@@ -26,7 +26,7 @@
                 <legend>Personal Info and Delivary Date</legend>
                 <div class="form-control">
                     <label for="username">Name</label>
-                    <input minlength="4" type="text" id="username" placeholder="John" required>
+                    <input minlength="4" type="text" id="username" placeholder="John" pattern="^[^\s]+$" required>
                     <small>Error Message</small>
                 </div>
                 <!-- new -->
@@ -52,12 +52,12 @@
                 </div>
                 <div class="form-control">
                     <label for="houseN">House Number</label>
-                    <input type="number" id="houseN" placeholder="55" required>
+                    <input type="number" id="houseN" placeholder="55" required min="1">
                     <small>Error Message</small>
                 </div>
                 <div class="form-control">
                     <label for="flatN">Flat Number</label>
-                    <input type="number" id="flatN" placeholder="3" required>
+                    <input type="number" id="flatN" placeholder="3" required min="1" pattern="^[0-9,-]">
                     <small>Error Message</small>
                 </div>
             </fieldset>
