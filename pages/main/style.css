@@ -38,6 +38,7 @@ body{
     width: 100%;
     min-height: 100vh;
     color: var(--dark-blue-color);
+    position: relative;
 }
 .container{
     max-width: 1160px;
@@ -474,3 +475,10 @@ button:active{
     text-align: center;
     color: var(--light-color);
   }
+
+  /* ------------Foooter---------------- */
+/* footer{
+background-color: var(--dark-blue-color);
+height: 80px;
+color: var(--light-color);
+  } */

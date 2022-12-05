@@ -51,6 +51,7 @@ basketEl.appendChild(shoppingCounter);
 
 //add form container to  dfrag
 const formContainer=document.getElementById("form-container");
+
 dFrag.appendChild(formContainer);
 document.body.appendChild(dFrag);
 
@@ -65,10 +66,13 @@ const submitBtn=document.getElementById("submit");
 const deliveryEl=document.getElementById("delivary");
 const deliverError=document.querySelector(".delivaryError")
 const confirmBtn=document.getElementById("submit")
+const flatEl=document.getElementById("flatN");
+const streetEl=document.getElementById("street");
+const houseEl=document.getElementById("houseN");
 
     function validateName(){
     let name=usernameEl.value
-    if(name.length==0){
+    if(name==" "){
     nameError.textContent="Write only letters and no white space"
  return false
     }
@@ -87,7 +91,7 @@ const confirmBtn=document.getElementById("submit")
 
     function validateSurName(){
     let surname=userSurnameEl.value
-    if(surname.length==0){
+    if(surname==""){
         surnameError.textContent="Write only letters and no white space"
      return false
     }
@@ -105,9 +109,7 @@ const confirmBtn=document.getElementById("submit")
     validateSurName()
 
     function validateDelivaryDate(){
-         delivaryDay=deliveryEl.value
-        console.log(delivary)
-        console.log(delivaryDay)
+        let delivaryDay=deliveryEl.value
             if(delivaryDay){
                 deliverError.innerHTML=`<i class="fa-sharp fa-solid fa-circle-check"></i>`
             return true;
@@ -115,11 +117,11 @@ const confirmBtn=document.getElementById("submit")
             validateDelivaryDate()
     // street input validation
              function validateStreet(){
-                const streetEl=document.getElementById("street");
+
                 console.log(streetEl)
                 const streetError=document.querySelector(".streetError")
                 let street=streetEl.value
-                 if(street.length==0){
+                 if(street==""){
                     streetError.textContent="Write letters and numbers"
                     return false
                     }
@@ -135,7 +137,6 @@ const confirmBtn=document.getElementById("submit")
 
             //House validation
             function validateHouse(){
-                const houseEl=document.getElementById("houseN");
                 const houseError=document.querySelector(".houseError")
          let house=+houseEl.value
          if(house==""){
@@ -150,7 +151,7 @@ const confirmBtn=document.getElementById("submit")
 
             //Flat validation
             function validateFlat(){
-                const flatEl=document.getElementById("flatN");
+
                 const flatError=document.querySelector(".flatError")
          let flat=+flatEl.value
          flatEl.addEventListener('keyup', function(){
@@ -200,10 +201,27 @@ const confirmBtn=document.getElementById("submit")
             });
         }
 
-
-
     }
 checkFields()
+
+confirmBtn.addEventListener("click",()=>{
+    const infoBlatt=document.createElement("div");
+
+    formContainer.appendChild(infoBlatt);
+    infoBlatt.innerHTML=`<div id="alldatas">
+    <h3>Order Information</h3>
+    <p>Name:${usernameEl.value}</p>
+    <p>Surname:${userSurnameEl.value}</p>
+    <p>Adress:
+        <p>Street:${streetEl.value}</p>
+        <p>House Number:${flatEl.value}</p>
+        <p>Flat Number:${flatEl.value}</p>
+        <p>Delivary Date:${deliveryEl.value}</p>
+    </p>
+    <p class="wish">Have a nice day and enjoy your reading!♥</p>
+    </div>`
+})
+
 console.log(userSurnameEl.value)
  console.log(usernameEl.value)
 
