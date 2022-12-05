@@ -201,8 +201,7 @@ shoppingCartContent.appendChild(confirmBtn);
 
 
  async function renderCatalogCarts(){
-    // let url = './catalogbooks.json';
-    let url = '../../catalogbooks.json';
+    let url = '../../pages/main/catalogbooks.json';
     let data = await fetch(url);
     let dataFrom =  await data.json();
     console.log(dataFrom)
@@ -308,6 +307,7 @@ shoppingCartContent.appendChild(confirmBtn);
           alert("Thank you!Your book is added to cart")
           let shoppinCartImgFullPAth=event.target.parentElement.previousElementSibling.children[0].src;
           let pos=shoppinCartImgFullPAth.indexOf("img")+22;
+          console.log(pos)
           let partPath=shoppinCartImgFullPAth.slice(pos);
           console.log(partPath)
           let bookName=event.target.parentElement.parentElement.children[1].children[0].textContent;
