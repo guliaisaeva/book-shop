@@ -202,14 +202,14 @@ shoppingCartContent.appendChild(confirmBtn);
 
  async function renderCatalogCarts(){
     // let url = './catalogBooks.json';
-    const url = '../../catalogBooks.json';
+    let url = '../../catalogBooks.json';
     let data = await fetch(url);
-    let dataFrom = await data.json();
+    let dataFrom =  await data.json();
+    console.log(dataFrom)
     for(cards of dataFrom){
       catalogGenerator(cards)
+     }
   }
-    }
-
 
   renderCatalogCarts();
     //function to create catalog cards taking book infos from json file
@@ -259,8 +259,6 @@ shoppingCartContent.appendChild(confirmBtn);
             bookBtnEl.setAttribute("id","bookBtn")
             bookBtnEl.innerText="Add To Bag";
              cardInfoEl.appendChild(bookBtnEl);
-
-
 
         // Popup Block
         //create popup container
