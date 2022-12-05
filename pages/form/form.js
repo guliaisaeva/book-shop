@@ -212,7 +212,7 @@ confirmBtn.addEventListener("click",()=>{
     <h3>Order Information</h3>
     <p>Name:${usernameEl.value}</p>
     <p>Surname:${userSurnameEl.value}</p>
-    <p>Adress:
+    <p>Address:
         <p>Street:${streetEl.value}</p>
         <p>House Number:${flatEl.value}</p>
         <p>Flat Number:${flatEl.value}</p>
