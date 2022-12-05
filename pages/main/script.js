@@ -306,6 +306,7 @@ shoppingCartContent.appendChild(confirmBtn);
          bookBtnEl.addEventListener('click',function(event){
           alert("Thank you!Your book is added to cart")
           let shoppinCartImgFullPAth=event.target.parentElement.previousElementSibling.children[0].src;
+          console.log(shoppinCartImgFullPAth)
           let pos=shoppinCartImgFullPAth.indexOf("img")+22;
           console.log(pos)
           let partPath=shoppinCartImgFullPAth.slice(pos);
@@ -316,7 +317,7 @@ shoppingCartContent.appendChild(confirmBtn);
           let finalPrice=bookPriceinCart.slice(1).trim();
           console.log(finalPrice)
           const items={}
-          items.image=`${partPath}`;
+          items.image=`${shoppinCartImgFullPAth}`;
           items.name=bookName;
           items.author=bookAuthor;
           items.price=bookPriceinCart;
