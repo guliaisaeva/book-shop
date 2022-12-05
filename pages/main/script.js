@@ -201,8 +201,8 @@ shoppingCartContent.appendChild(confirmBtn);
 
 
  async function renderCatalogCarts(){
-    // let url = './catalogBooks.json';
-    let url = '../../catalogBooks.json';
+    // let url = './catalogbooks.json';
+    let url = '../../catalogbooks.json';
     let data = await fetch(url);
     let dataFrom =  await data.json();
     console.log(dataFrom)
