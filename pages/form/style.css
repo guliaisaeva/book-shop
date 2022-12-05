@@ -1,3 +1,5 @@
+/* font-family: 'Montez', cursive;
+font-family: 'Roboto', sans-serif; */
 /*------------ Variables Css---------- */
  /* typography */
  :root {
@@ -36,129 +38,267 @@ body{
     width: 100%;
     min-height: 100vh;
     color: var(--dark-blue-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-
 .container{
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    width: 60%;
-    margin: 2rem 0;
+    max-width: 1160px;
+    margin: 0 auto;
+    max-height: 100vh;
+    /* background-color: #439AA5; */
+ }
+ a{ text-decoration: none;
+cursor: pointer;}
+ li{
+    list-style-type: none;
+}
+ul{
+    list-style: none;
+}
+i{
+    color: var(--accent-color);
+    cursor: pointer;
+}
+i:hover{
+color: orange;
+}
+h1{
+font-family: var(--accent-font);
+font-style: normal;
+font-weight: 400;
+font-size: 55px;
+line-height: 72px;
+color:var(--dark-blue-color);
 }
 
-h2{
+button,#confirmBtn{
+    font-family: var(--body-font);
+    font-size: 0.8rem;
+    padding: 0.5rem 0.8rem;
+    background-color: var(--accent-color) ;
+    border: none;
+    border-radius: 10px;
     text-align: center;
-    margin: 0 0 20px;
-    color: var(--dark-blue-color);
-    font-family: var(--accent-font);
-    font-size: 2.5rem;
+    color: var(--light-color);
+    cursor: pointer;
 }
-
-.form{
+button:hover{
+    background: var(--btn-hover-color);
+}
+button:active{
+    background: var(--btn--active-color);
+}
+/*----------- CSS Classes--------- */
+/*-------------- HEADER NAV---------- */
+.header{
     width: 100%;
-    padding: 30px 40px;
-}
-
-.form-control{
+    max-height: 100px;
+    background: var(--dark-blue-color);
+    }
+    .nav{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .logo{
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    /* margin-bottom: 10px;
-    padding-bottom: 20px; */
-    position: relative;
-    gap: 1rem;
-}
-
-.form-control label{
-    color: var(--dark-blue-color);
+    padding: 10px;
+    }
+    .nav__menu{
+    width: 40%;
+    height: 100%;
+    }
+    .nav__list{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    }
+    .nav__item a{
+    font-family: var(--body-font);
+    font-style: normal;
     font-weight: 500;
-    font-size: 0.9rem;
-}
-.input:valid:not(:placeholder-shown) {
-	border-color: black;
-}
+    font-size: 16px;
+    line-height: 23px;
+    color: #EE788E;
+    }
+    .nav__link:hover{
+    color: var(--catalog-bg-color);
+    text-decoration: underline;
+    text-underline-offset: 10px;
+    text-decoration-thickness: 2px;
+    }
+    #shopping-count{
+      color:var(--light-color);
+      font-weight:500;
+      font-size:1rem;
+      margin-left: 5px;
+    }
+    /*----------- HERO SECTION---------- */
 
+    .hero{
+    width: 100%;
+    height: 100vh;
+    background-color: #439AA5;
+    }
+    .hero__content{
+     width: 100%;
+     height: 100vh;
+     display: flex;
+     justify-content:center;
+     align-items: center;
+     gap: 1rem;
+    }
+    .hero__img{
+    width: 100%;
+    }
+    .hero__img img{
+      width: 100%;
+      height: auto;
+    }
+    .hero__text-content{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    }
+    .hero__paragraf{
+    font-family: var(--body-font);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: #E9DDDB;
+    }
+    /* QUOTES block */
+    .hero__quotes{
+     width: 350px;
+    box-shadow: 2px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px;
+    gap: 0.3rem;
+    }
+    .hero__quotes-text{
+    font-family: var(--body-font);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #E9DDDB;
+    text-align: center;
+    letter-spacing: normal;
+    }
+    .hero__quotes-author{
+    font-family: var(--accent-font);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 37px;
+    color: #000000;
+    }
+
+  /*---------------- Form Section------------------ */
+.form-container{
+    width: 50%;
+    height: 100vh;
+    margin: 2rem auto;
+    text-align: center;
+}
+h2{
+    font-family: var(--accent-font);
+    color: var(--bluedark-color);
+     font-size: 2rem;
+}
+form{
+    width: 100%;
+    height: 100%;
+    background-color:var(--catalog-bg-color);
+    border-radius: 5px;
+    padding: 1rem;
+}
+legend{
+    color: var(--dark-blue-color);
+    text-align: left;
+    font-weight: 700;
+}
+.form-control{
+    padding: 1rem;
+    position: relative;
+}
+.form-control label{
+    font-family: var(--bluedark-color);
+    padding-right: 1rem;
+}
+.form-control input{
+border-radius: 5px;
+padding: 8px;
+border: none;
+background-color: #d5c5c5;
+}
+.form-control small{
+color: red;
+position: absolute;
+left: 70%;
+top:1rem;
+ }
+.form-control input:invalid{
+    border: none;
+    background-color: ivory;
+    outline: 2px solid red;
+}
+.form-control input:valid{
+    border: none;
+    background-color: ivory;
+    outline: 2px solid green;
+}
+.input:valid:not(:placeholder-shown){
+	border-color: green;
+}
 .input:invalid:not(:placeholder-shown) {
 	border-color: red;
 }
+ input[type="submit"]{
+    width: 40%;
+    padding:0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+ }
 
+  .payment input[type="radio"]:checked + label {
+  color: #21842B;
 
-.form-control input
-{
-    border: 2px solid #f0f0f0;
-    border-radius: 4px;
-    display: block;
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
 }
-.gift input[type="checkbox"]{
-    width:20px;
-    padding-left: 10px;
+.payment input[type="radio"]+label{
+    font-size: 1.5rem;
 }
-
-.form-control input:focus{
-    outline: 0;
-    border-color: #777;
+.checkboxes{
+padding: 2rem 0;
+display: flex;
+justify-content: center;
+flex-direction:row;
+gap: 1rem;
 }
-.form-control input[placeholder]{
-    text-align: center;
+#giftserror{
+ left:40%;
+ top: 0;
+ color: #21842B;
+ font-size: 1.3rem;
+ font-weight: 700;
 }
-.form-control.success input {
-    border-color: var(--succes-color);
+ .activeBtn{
+    background-color:green;
 }
-
-.form-control.error input {
-    border-color: var(--error-color);
-}
-
-.form-control small{
-    color: var(--error-color);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    visibility: hidden;
-}
-
-.form-control.error small{
-    visibility: visible;
-}
-.form button {
-    cursor: pointer;
-    background-color: #3498db;
-    border: 2px solid #3498db;
-    border-radius: 4px;
-    color: #fff;
-    display: block;
-    padding: 10px;
-    font-size: 16px;
-    margin-top:20px;
-    width:100%;
-}
-.payment{
-    display: flex;
-}
-.gift{
-    display: flex;
-}
-form{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-fieldset{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding: 1rem;
-}
-legend{
-    text-align: center;
-    color: var(--accent-color);
-    font-weight: 700;
+#giftserror:hover{
+  cursor: pointer;
 }

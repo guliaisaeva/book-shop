@@ -301,7 +301,8 @@ shoppingCartContent.appendChild(confirmBtn);
           popupContainerEl.classList.add("active");
         })
 
-        // Shoppin Cart section
+// -----------------SHOPPING CART SECTION-------------------------
+
          bookBtnEl.addEventListener('click',function(event){
           alert("Thank you!Your book is added to cart")
           let shoppinCartImgFullPAth=event.target.parentElement.previousElementSibling.children[0].src;
@@ -331,6 +332,7 @@ shoppingCartContent.appendChild(confirmBtn);
                    <span class="card-price">${items.price}</span>
                </div> <i class="fa-solid fa-xmark fa-2x cart-icon"></i>`
                shoppingCartContainer.appendChild(shoppingCart);
+               showTotals()
             //remove selected book function
             function deleteCart(){
               const deleteBtns=document.querySelectorAll(".fa-xmark");
@@ -338,13 +340,12 @@ shoppingCartContent.appendChild(confirmBtn);
                btn.addEventListener("click",(e)=>{
                  let selectedItem = e.target.parentElement;
                 selectedItem.remove();
-
                })
              })
 
             }
-                showTotals()
-                deleteCart()
+            deleteCart()
+
             });
 
   }
@@ -374,186 +375,6 @@ shoppingCartContent.appendChild(confirmBtn);
 confirmBtn.addEventListener("click",()=>{
  location.href=("/book-shop/pages/form/index.html");
 })
-
-
-
-
-
-//   const shoppingCart=document.createElement("div");
-//   shoppingCart.classList.add("sh-card");
-//        shoppingCart.innerHTML=`
-//        <i class="fa-solid fa-xmark fa-2x cart-icon"></i>
-//        <div class="card__img-box">
-//            <img src=${dataFrom.imageLink} alt="book">
-//        </div>
-//        <div class="card__info">
-//            <h3 class="title">${dataFrom.title}</h3>
-//            <h4 class="author">${dataFrom.author}</h4>
-//            <span class="price">&dollar;${dataFrom.price}</span>
-//        </div>`
-//        shoppingCartContainer.appendChild(shoppingCart);
-
-//   }
-
-// const bookBtn=document.querySelector(".")
-// bookBtnEl.addEventListener("click",function(e){
-//   if(e.target){
-//     //function to create catalog cards taking book infos from json file
-
-
-
-
-
-//        //create shopping cart Image
-
-
-
-// // shoppingCartContainer.innerHTML=` <div class="card">
-// // <i class="fa-solid fa-xmark fa-2x cart-icon"></i>
-// // <div class="card__img-box">
-// //     <img src="../../assets/images/catalog/effectiveJs.png" alt="book">
-// // </div>
-// // <div class="card__info">
-// //     <h3 class="title">Javascript Guids from Scratch</h3>
-// //     <h4 class="author">John, Ursula Cannedy</h4>
-// //     <span class="price">&dollar;30</span>
-// // </div>`
-
-  // }
-
-// })
-
-
-
-  //Popup Section Functionlaity
-    // const container = document.querySelector(".container");
-    // const btn = document.querySelector(".btn");
-    // const popupContainer = document.querySelector(".popup-container");
-    // const closedIcon = document.querySelector(".close-icon");
-
-    // btn.addEventListener("click", () => {
-    //   container.classList.add("active");
-    //   popupContainer.classList.remove("active");
-    // });
-    // closedIcon.addEventListener("click", () => {
-    //   container.classList.remove("active");
-    //   popupContainer.classList.add("active");
-    // });
-      // cardEl.innerHTML=`
-
-      // <div class="card__img-box">
-      //     <img src=${dataFrom.imageLink} alt="book">
-      // </div>
-      // <div class="card__info">
-      //     <h3 class="title">${dataFrom.title}</h3>
-      //     <h4 class="author">${dataFrom.author}</h4>
-      //     <span class="show-more" id="show-more"> Show more</span>
-      //     <span class="price">&dollar;${dataFrom.price}</span>
-      //     <button>Add To Bag</button>
-      //     <!-- Popup -->
-      //     <div class="popup-container active">
-      //         <h3 class="title">JavaScript:The Good Parts avaScript</h3>
-      //         <h4 class="author">Douglas Crockford</h4>
-      //         <p class="about-book" id="about-book">With JavaScript: The Good Parts, you'll discover a
-      //             beautiful, elegant, lightweight and highly expressive language that lets you create
-      //             effective code, whether you're managing object libraries or just trying to get Ajax
-      //             to run fast. If you develop sites or applications for the Web, this book is an
-      //             absolute must If you develop sites or applications for the Web, this book is an
-      //             absolute must</p>
-      //         <div class="close-icon">
-      //             <i class="fa-solid fa-xmark fa-2x"></i>
-      //         </div>
-      // </div>`
-
-
-
-// -----------------SHOPPING CART SECTION-------------------------
-
-
-
-
-
-
-// bookBtnEl.addEventListener('click',function(event){
-// let shoppinCartImgFullPAth=event.target.parentElement.previousElementSibling.children[0].src;
-// let pos=shoppinCartImgFullPAth.indexOf("img")+22;
-// let partPath=shoppinCartImgFullPAth.slice(pos);
-// console.log(partPath)
-// let bookName=event.target.parentElement.parentElement.children[1].children[0].textContent;
-// let bookAuthor=event.target.parentElement.parentElement.children[1].children[1].textContent;
-// let bookPriceinCart=event.target.parentElement.parentElement.children[1].children[3].textContent;
-// let finalPrice=bookPriceinCart.slice(1).trim();
-// console.log(finalPrice)
-// const items={}
-// items.image=`${partPath}`;
-// items.name=bookName;
-// items.author=bookAuthor;
-// items.price=bookPriceinCart;
-// items.price=finalPrice;
-//   });
-
-//   const shoppingCart=document.createElement("div");
-//   shoppingCart.classList.add("sh-card");
-//        shoppingCart.innerHTML=`
-//        <i class="fa-solid fa-xmark fa-2x cart-icon"></i>
-//        <div class="card__img-box">
-//            <img src=${dataFrom.imageLink} alt="book">
-//        </div>
-//        <div class="card__info">
-//            <h3 class="title">${dataFrom.title}</h3>
-//            <h4 class="author">${dataFrom.author}</h4>
-//            <span class="price">&dollar;${dataFrom.price}</span>
-//        </div>`
-//        shoppingCartContainer.appendChild(shoppingCart);
-
-//   }
-
-
-// // create shopping cart
-
-//
-
-// // Add items to the cart
-// function addBook(){
-// bookBtnEl.addEventListener('click',function(event){
-// let shoppinCartImgFullPAth=event.target.parentElement.previousElementSibling.children[0].src;
-// let pos=shoppinCartImgFullPAth.indexOf("img")+22;
-// let partPath=shoppinCartImgFullPAth.slice(pos);
-// console.log(partPath)
-// let bookName=event.target.parentElement.parentElement.children[1].children[0].textContent;
-// let bookAuthor=event.target.parentElement.parentElement.children[1].children[1].textContent;
-// let bookPriceinCart=event.target.parentElement.parentElement.children[1].children[3].textContent;
-// let finalPrice=bookPriceinCart.slice(1).trim();
-// console.log(finalPrice)
-// const items={}
-// items.image=`${partPath}`;
-// items.name=bookName;
-// items.author=bookAuthor;
-// items.price=bookPriceinCart;
-// items.price=finalPrice;
-
-// //create book cart item
-// // const cartItem=document.createElement("div");
-// // cartItem.classList("card")
-
-
-//confirmation block
-//create confirmation box
-// const shoppingCartConfirmation=document.createElement("div");
-// shoppingCartConfirmation.classList.add("confirmation");
-// shoppingCartContent.appendChild(shoppingCartConfirmation);
-// //create confirmation total
-// const confirmationTotal=document.createElement("p");
-// confirmationTotal.innerText="Total:"
-// shoppingCartConfirmation.appendChild(confirmationTotal);
-// //create confirmation total Value
-// const confirmationTotalValue=document.createElement("span");
-//  confirmationTotalValue.setAttribute("id","total");
-//  confirmationTotalValue.innerText="$0";
-//  confirmationTotal.appendChild(confirmationTotalValue);
-// })
-// }
-// addBook()
 
  //add to body
 dFrag.appendChild(mainEl);

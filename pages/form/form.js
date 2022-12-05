@@ -1,79 +1,209 @@
-const form = document.getElementById('form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
 
-//Show input error messages
-function showError(input, message) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control error';
-    const small = formControl.querySelector('small');
-    small.innerText = message;
-}
+// Create a document fragment
+const dFrag = document.createDocumentFragment();
+console.log(document.body.appendChild(dFrag))
+// Create a document header
+const headerEl=document.createElement("header");
+headerEl.setAttribute("class", "header");
+dFrag.appendChild(headerEl)
+// Create a document container
+const containerEl=document.createElement("div");
+containerEl.setAttribute("class", "container");
+headerEl.appendChild(containerEl);
+// Create a document nav
+const navEl=document.createElement("nav");
+navEl.setAttribute("class", "nav");
+containerEl.appendChild(navEl);
+// Create a document logo
+const logoEl=document.createElement("div");
+logoEl.setAttribute("class", "logo");
+logoEl.setAttribute("id", "logo");
+const logoLink=document.createElement("a");
+logoLink.href="../../pages/main/index.html#hero";
+logoEl.appendChild(logoLink);
+const logoImg=document.createElement("img");
+logoImg.src="../../assets/icons/logo.svg";
+logoImg.setAttribute("alt", "logo");
+logoImg.setAttribute("width", "80");
+logoLink.appendChild(logoImg);
+navEl.appendChild(logoEl);
+// Create a document nav Menu
+const menuEl=document.createElement("div");
+menuEl.setAttribute("class", "nav__menu");
+navEl.appendChild(menuEl);
+// ul
+const ulEl=document.createElement("ul");
+ulEl.setAttribute("class", "nav__list");
+menuEl.appendChild(ulEl);
+ulEl.innerHTML=`<li class="nav__item"><a href="../../pages/main/index.html#hero" class="nav__link nav-p">Home</a></li>
+<li class="nav__item"><a href="../../pages/main/index.html#catalog" class="nav__link nav-p">Catalog</a></li>
+<li class="nav__item"><a href="../../pages/main/index.html#footer" class="nav__link nav-p">Contact</a></li>`
+//create basket icon
+const basketEl=document.createElement("div");
+basketEl.setAttribute("class", "basket-shopping");
+basketEl.innerHTML=`<a href="#form"><i class="fa-solid fa-cart-shopping nav__link"></i></a>`
+navEl.appendChild(basketEl);
+//create shopping counter
+const shoppingCounter=document.createElement("span");
+shoppingCounter.innerText="4";
+shoppingCounter.setAttribute("id","shopping-count");
+basketEl.appendChild(shoppingCounter);
 
-//show success colour
-function showSucces(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control success';
-}
+//add form container to  dfrag
+const formContainer=document.getElementById("form-container");
+dFrag.appendChild(formContainer);
+document.body.appendChild(dFrag);
 
-//check email is valid
-function checkEmail(input) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(re.test(input.value.trim())) {
-        showSucces(input)
-    }else {
-        showError(input,'Email is not invalid');
+//------------------ form name and surname validation--------------------
+const formEl = document.getElementById('form');
+const inputel=document.querySelectorAll("input");
+const usernameEl = document.getElementById('username');
+const userSurnameEl = document.getElementById('usersurname');
+const nameError=document.querySelector(".userNameError");
+const surnameError=document.querySelector(".surnameError");
+const submitBtn=document.getElementById("submit");
+const deliveryEl=document.getElementById("delivary");
+const deliverError=document.querySelector(".delivaryError")
+const confirmBtn=document.getElementById("submit")
+
+    function validateName(){
+    let name=usernameEl.value
+    if(name.length==0){
+    nameError.textContent="Write only letters and no white space"
+ return false
     }
-}
+    if(name.length<4){
+    nameError.textContent="The name length min 4 symbols"
+     return false
+    }
+    if(/^[0-9\s]*$/.test(name)){
+    nameError.textContent="Write only letters and no white space"
+     return false
+    }
+        nameError.innerHTML=`<i class="fa-sharp fa-solid fa-circle-check"></i>`;
+    return true;
+    }
+    validateName()
 
-
-//checkRequired fields
-function checkRequired(inputArr) {
-    inputArr.forEach(function(input){
-        if(input.value.trim() === ''){
-            showError(input,`${getFieldName(input)} is required`)
-        }else {
-            showSucces(input);
+    function validateSurName(){
+    let surname=userSurnameEl.value
+    if(surname.length==0){
+        surnameError.textContent="Write only letters and no white space"
+     return false
+    }
+    if(surname.length<5){
+        surnameError.textContent="The name length min 5 letters"
+         return false
         }
-    });
-}
-
-
-//check input Length
-function checkLength(input, min ,max) {
-    if(input.value.length < min) {
-        showError(input, `${getFieldName(input)} must be at least ${min} characters`);
-    }else if(input.value.length > max) {
-        showError(input, `${getFieldName(input)} must be les than ${max} characters`);
-    }else {
-        showSucces(input);
+    if(/^[0-9\s]*$/.test(surname)){
+        surnameError.textContent="Write only letters and no white space"
+         return false
+        }
+        surnameError.innerHTML=`<i class="fa-sharp fa-solid fa-circle-check"></i>`
+    return true;
     }
-}
+    validateSurName()
 
-//get FieldName
-function getFieldName(input) {
-    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
-}
+    function validateDelivaryDate(){
+         delivaryDay=deliveryEl.value
+        console.log(delivary)
+        console.log(delivaryDay)
+            if(delivaryDay){
+                deliverError.innerHTML=`<i class="fa-sharp fa-solid fa-circle-check"></i>`
+            return true;
+            }}
+            validateDelivaryDate()
+    // street input validation
+             function validateStreet(){
+                const streetEl=document.getElementById("street");
+                console.log(streetEl)
+                const streetError=document.querySelector(".streetError")
+                let street=streetEl.value
+                 if(street.length==0){
+                    streetError.textContent="Write letters and numbers"
+                    return false
+                    }
+                 if(street.length<5){
+                 streetError.textContent="The name length min 5 letters"
+                 return false
+            }
 
-// check passwords match
-function checkPasswordMatch(input1, input2) {
-    if(input1.value !== input2.value) {
-        showError(input2, 'Passwords do not match');
+            streetError.innerHTML=`<i class="fa-sharp fa-solid fa-circle-check"></i>`
+        return true;
+            }
+            validateStreet();
+
+            //House validation
+            function validateHouse(){
+                const houseEl=document.getElementById("houseN");
+                const houseError=document.querySelector(".houseError")
+         let house=+houseEl.value
+         if(house==""){
+            houseError.textContent="This field required"
+         return false
+        }
+            houseError.innerHTML=`<i class="fa-sharp fa-solid fa-circle-check"></i>`
+        return true;
+
+            }
+            validateHouse();
+
+            //Flat validation
+            function validateFlat(){
+                const flatEl=document.getElementById("flatN");
+                const flatError=document.querySelector(".flatError")
+         let flat=+flatEl.value
+         flatEl.addEventListener('keyup', function(){
+            if (flat ==""){
+             flatError.textContent="This field required"
+         return false
+            }
+            flatError.innerHTML=`<i class="fa-sharp fa-solid fa-circle-check"></i>`
+                return true;
+            })
+         }
+
+          validateFlat();
+    // only two 2 gift selection
+
+    var checks = document.querySelectorAll(".check");
+    var max = 2;
+    for (var i = 0; i < checks.length; i++)
+  checks[i].onclick = selectiveCheck;
+    function selectiveCheck (event) {
+     var checkedChecks = document.querySelectorAll(".check:checked");
+    if (checkedChecks.length >= max + 1)
+    return false;
     }
-}
+
+    //check if all Field is completed
+
+    function checkFields(){
+
+        const infoFromForm=document.getElementById("alldatas");
+        const arr=[];
+        for (const input of inputel) {
+           let info= arr.push(input.value)
 
 
-//Event Listeners
-form.addEventListener('submit',function(e) {
-    e.preventDefault();
+            input.addEventListener(`input`, () => {
+                for (const input of inputel) {
+                        if (input.value.length===0) {
+                           confirmBtn.disabled = true;
 
-    checkRequired([username, email, password, password2]);
-    checkLength(username,3,15);
-    checkLength(password,6,25);
-    checkEmail(email);
-    checkPasswordMatch(password, password2);
-});
+                            break;
+                        } else {
+                            confirmBtn.disabled = false;
+                            confirmBtn.classList.remove('activeBtn');
+                        }
+                    }
+            });
+        }
 
-//------------------------------------------------------
+
+
+    }
+checkFields()
+console.log(userSurnameEl.value)
+ console.log(usernameEl.value)
+
