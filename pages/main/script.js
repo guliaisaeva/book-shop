@@ -199,10 +199,9 @@ shoppingCartContent.appendChild(confirmBtn);
 //function to render carts taking book infos from json file
 
  async function renderCatalogCarts(){
-    let url = 'catalogBooks.json';
+    let url = './catalogBooks.json';
     let data = await fetch(url);
     let dataFrom= await data.json();
-    console.log(dataFrom)
 
     for(cards of dataFrom){
         catalogGenerator(cards)
