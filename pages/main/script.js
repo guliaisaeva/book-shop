@@ -1,4 +1,4 @@
-(async()=>{
+
 
 // Create a document fragment
 const dFrag = document.createDocumentFragment();
@@ -205,14 +205,13 @@ shoppingCartContent.appendChild(confirmBtn);
     const url = '../../catalogBooks.json';
     let data = await fetch(url);
     let dataFrom = await data.json();
-    return dataFrom;
-    }
-    let dataFrom=await renderCatalogCarts();
-    console.log(dataFrom)
     for(cards of dataFrom){
       catalogGenerator(cards)
   }
-  // renderCatalogCarts();
+    }
+
+
+  renderCatalogCarts();
     //function to create catalog cards taking book infos from json file
     function catalogGenerator(dataFrom){
       const cardEl=document.createElement("div");
@@ -383,7 +382,6 @@ confirmBtn.addEventListener("click",()=>{
  //add to body
 dFrag.appendChild(mainEl);
 document.body.appendChild(dFrag);
-})()
 // // Create a document fragment
 // const dFrag = document.createDocumentFragment();
 // console.log(document.body.appendChild(dFrag))
