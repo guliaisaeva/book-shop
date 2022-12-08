@@ -204,24 +204,25 @@ const houseEl=document.getElementById("houseN");
     }
 checkFields()
 
-confirmBtn.addEventListener("click",()=>{
-    const infoBlatt=document.createElement("div");
 
-    formContainer.appendChild(infoBlatt);
-    infoBlatt.innerHTML=`<div id="alldatas">
-    <h3>Order Information</h3>
-    <p>Name:${usernameEl.value}</p>
-    <p>Surname:${userSurnameEl.value}</p>
-    <p>Address:
-        <p>Street:${streetEl.value}</p>
-        <p>House Number:${flatEl.value}</p>
-        <p>Flat Number:${flatEl.value}</p>
-        <p>Delivary Date:${deliveryEl.value}</p>
-    </p>
-    <p class="wish">Have a nice day and enjoy your reading!♥</p>
-    </div>`
+
+confirmBtn.addEventListener("click",()=>{
+   const infoEl=document.getElementById("alldatas")
+   const infoBlatt=document.createElement("div");
+   formContainer.appendChild(infoBlatt);
+   infoBlatt.innerHTML=`<div id="alldatas">
+   <h3>Order Information</h3>
+   <p>Name:${usernameEl.value}</p>
+   <p>Surname:${userSurnameEl.value}</p>
+   <p>Address:
+       <p>Street:${streetEl.value}</p>
+       <p>House Number:${flatEl.value}</p>
+       <p>Flat Number:${flatEl.value}</p>
+       <p>Delivary Date:${deliveryEl.value}</p>
+   </p>
+   <p class="wish">Have a nice day and enjoy your reading!♥</p>
+   </div>`
 })
 
-console.log(userSurnameEl.value)
- console.log(usernameEl.value)
+
 
