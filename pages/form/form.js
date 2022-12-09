@@ -222,6 +222,7 @@ confirmBtn.addEventListener("click",()=>{
    </p>
    <p class="wish">Have a nice day and enjoy your reading!♥</p>
    </div>`
+alert(infoBlatt.textContent)
 })
 
 
