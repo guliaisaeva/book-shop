@@ -116,7 +116,7 @@ const houseEl=document.getElementById("houseN");
             }}
             validateDelivaryDate()
     // street input validation
-             function validateStreet(){
+     function validateStreet(){
 
                 console.log(streetEl)
                 const streetError=document.querySelector(".streetError")
@@ -136,7 +136,7 @@ const houseEl=document.getElementById("houseN");
             validateStreet();
 
             //House validation
-            function validateHouse(){
+      function validateHouse(){
                 const houseError=document.querySelector(".houseError")
          let house=+houseEl.value
          if(house==""){
@@ -150,9 +150,9 @@ const houseEl=document.getElementById("houseN");
             validateHouse();
 
             //Flat validation
-            function validateFlat(){
+      function validateFlat(){
 
-                const flatError=document.querySelector(".flatError")
+        const flatError=document.querySelector(".flatError")
          let flat=+flatEl.value
          flatEl.addEventListener('keyup', function(){
             if (flat ==""){
@@ -180,18 +180,15 @@ const houseEl=document.getElementById("houseN");
     //check if all Field is completed
 
     function checkFields(){
-
         const infoFromForm=document.getElementById("alldatas");
         const arr=[];
         for (const input of inputel) {
            let info= arr.push(input.value)
-
-
             input.addEventListener(`input`, () => {
                 for (const input of inputel) {
                         if (input.value.length===0) {
                            confirmBtn.disabled = true;
-
+                           confirmBtn.addEventListener("click",infoBlatt)
                             break;
                         } else {
                             confirmBtn.disabled = false;
@@ -201,29 +198,26 @@ const houseEl=document.getElementById("houseN");
             });
         }
 
+
     }
 checkFields()
 
 
-
-confirmBtn.addEventListener("click",()=>{
-   const infoEl=document.getElementById("alldatas")
-   const infoBlatt=document.createElement("div");
-   formContainer.appendChild(infoBlatt);
-   infoBlatt.innerHTML=`<div id="alldatas">
-   <h3>Order Information</h3>
-   <p>Name:${usernameEl.value}</p>
-   <p>Surname:${userSurnameEl.value}</p>
-   <p>Address:
-       <p>Street:${streetEl.value}</p>
-       <p>House Number:${flatEl.value}</p>
-       <p>Flat Number:${flatEl.value}</p>
-       <p>Delivary Date:${deliveryEl.value}</p>
-   </p>
-   <p class="wish">Have a nice day and enjoy your reading!♥</p>
-   </div>`
-alert(infoBlatt.textContent)
-})
-
-
-
+confirmBtn.addEventListener("click",infoBlatt)
+ function infoBlatt(){
+    const infoEl=document.getElementById("alldatas")
+    const infoBlatt=document.createElement("div");
+    formContainer.appendChild(infoBlatt);
+     infoBlatt.innerHTML=`<div id="alldatas">
+     <h3>Order Information</h3>
+     <p>Name:${usernameEl.value}</p>
+     <p>Surname:${userSurnameEl.value}</p>
+     <p>Address:
+         <p>Street:${streetEl.value}</p>
+         <p>House Number:${flatEl.value}</p>
+         <p>Flat Number:${flatEl.value}</p>
+         <p>Delivary Date:${deliveryEl.value}</p>
+     </p>
+     <p class="wish">Have a nice day and enjoy your reading!♥</p>
+     </div>`
+ }
